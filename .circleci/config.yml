@@ -2,15 +2,12 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/golang:1.8
+      - image: instrumentisto/dep
 
     working_directory: /go/src/github.com/tomlazar/go-intervals
 
     steps:
       - checkout
-
-      - run: go get -v github.com/golang/dep
-      - run: ls /$GOPATH/bin
 
       - restore_cache:
           keys:
