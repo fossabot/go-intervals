@@ -10,7 +10,7 @@ jobs:
       - checkout
 
       - run: go get -v github.com/golang/dep
-      - run: ls /go/bin
+      - run: ls /$GOPATH/bin
 
       - restore_cache:
           keys:
