@@ -15,7 +15,7 @@ jobs:
           keys:
             - godep
 
-      - run: dep ensure
+      - run: $GOPATH/bin/dep ensure
 
       - save_cache:
           key: godep
