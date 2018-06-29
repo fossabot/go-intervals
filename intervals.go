@@ -50,8 +50,10 @@ func init() {
 
 	viper.SetConfigName("intervals")
 	viper.SetConfigType("yaml")
-	viper.AddConfigPath("./.config/")
-	viper.AddConfigPath("~/.config/")
+	viper.AddConfigPath(".config/")
+
+	viper.SetDefault("INTERVALS_APIKEY", "")
+	viper.SetDefault("INTERVALS_URL", "")
 
 	viper.AutomaticEnv()
 
