@@ -57,10 +57,7 @@ func init() {
 
 	viper.AutomaticEnv()
 
-	err := viper.ReadInConfig()
-	if err != nil {
-		log.WithField("ERROR", err).Fatal("Cound not read in config")
-	}
+	viper.ReadInConfig()
 }
 
 // NewClient returns a new Intervals API client. If a nil httpClient is
