@@ -13,6 +13,8 @@ jobs:
           keys:
             - godep
 
+      - run: go get github.com/mattn/goveralls
+
       - run: dep ensure
 
       - save_cache:
@@ -20,4 +22,5 @@ jobs:
           paths:
             - "/go/pkg"
 
-      - run: go test -v
+      - run: go test -v -race -coverprofile=/tmp/coverage.out
+      - run: $GOPATH/bin/goveralls -coverprofile=/tmp/coverage.out -service=circle-ci -repotoken=$COVERALLS_TOKEN
