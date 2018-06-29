@@ -1,32 +1,25 @@
-# Golang CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-go/ for more details
 version: 2
 jobs:
   build:
     docker:
       - image: circleci/golang:1.8
-    
-    working_directory: /go/src/github.com/{{ORG_NAME}}/{{REPO_NAME}}
-    
+
+    working_directory: /go/src/github.com/tomlazar/go-intervals
+
     steps:
       - checkout
 
-      - run:
-        name: Install Dep
-        command: |
-          curl -L -s https://github.com/golang/dep/releases/download/v${DEP_VERSION}/dep-linux-amd64 -o $GOPATH/bin/dep
-          chmod +x $GOPATH/bin/dep
-
+      - run: curl -L -s https://github.com/golang/dep/releases/download/v${DEP_VERSION}/dep-linux-amd64 -o $GOPATH/bin/dep
+      - run: chmod +x $GOPATH/bin/dep
       - restore_cache:
-        - keys:
-          - godep
+          keys:
+            - godep
 
       - run: dep ensure
 
-      - save_cache: 
-        key: godep
-        paths:
-          - "$GOPATH/pkg/dep"
+      - save_cache:
+          key: godep
+          paths:
+            - "/go/pkg"
 
-      - run: go test -v ./...
+      - run: go test -v
